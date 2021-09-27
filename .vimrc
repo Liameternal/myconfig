@@ -1,5 +1,7 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" be iMproved, required
+set nocompatible              
+" required
+filetype off                  
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -14,8 +16,8 @@ Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
 Plugin 'tpope/vim-repeat'
-Plugin 'ycm-core/YouCompleteMe'
-Plugin 'rdnetto/YCM-Generator'
+" Plugin 'ycm-core/YouCompleteMe'
+" Plugin 'rdnetto/YCM-Generator'
 Plugin 'adelarsq/vim-matchit'
 Plugin 'tpope/vim-unimpaired'
 Plugin 'tpope/vim-rails'
@@ -63,43 +65,92 @@ filetype plugin indent on    " required
 "
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                           appearance
+"                           Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 color desert
-set fileencodings=utf-8,gbk,gbk2312
+set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
+
+" number of screen lines to show around the cursor
+set scrolloff=3
+
+" show the line number for each line
 set nu
+
+" number of spaces used for each step of (auto)indent
 set sw=4
+
+" number of spaces a <Tab> in the text stands for
 set ts=4
-set expandtab       "transfer tab into blank
+
+" Transfer tab into blank
+set expandtab       
+
+" automatically set the indent of a new line
 set autoindent
-set hidden          "keep file unstored when jumping files
-set showcmd         "If the 'showcmd' option is on,the (partially) entered 
-                    "count is shown at the bottom of the window.
-set mouse=a                    
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 
-" replace eol with $ and trailing space with . while set list is true
-set listchars:eol:$,trail:.
+" Keep file unstored when jumping files
+set hidden          
 
-" :&& first & means :s[ubstitude] command, second & means [flag] used last 
-" :s[ubstitude] command
-nnoremap & :&&<CR>  
-xnoremap & :&&<CR>
-command W wa
-command Q qa
-command WQ wa|qa
+" If the 'showcmd' option is on,the (partially) entered 
+" Count or pre-command is shown at the bottom of the window.
+set showcmd         
 
+" list of flags for using the mouse
+" n	Normal mode and Terminal modes
+" v	Visual mode
+" i	Insert mode
+" c	Command-line mode
+" h	all previous modes when editing a help file
+" a	all previous modes
+" r	for |hit-enter| and |more-prompt| prompt
+if has('mouse')
+    set mouse=a                    
+endif
+
+" make a change
+" Keep copy of a file when overwriting it but not on the VMS.
+" sets the 'undofile' option make the undo command work while you edit a
+" file after exit it at the cost of storing a file.
+if has("vim")
+    set nobackup
+else
+    set backup
+    if has('persistent_undo')
+        set undofile
+    endif
+endif
+
+" Replace eol with $ and trailing space with . while set list is true
+set listchars:eol:$,trail:-,tab:>-
+
+" Allow the h command, when used in normal mode, to move the cursor
+" to the end of the previsous line, the l command vice versa. 
+set whichwrap=h,l
+
+" The 'iskeyword' option specifies which characters can appear in a word,
+" the "@" stands for all alphabetic letters, "48-57" stands for ASCII 
+" characters 48-57, which are the numbers between 0 to 9, "192-255" are
+" the printable latin characters.
+set iskeyword=@,48-57,_,192-255
+
+" line length above which to break a line
 set textwidth=80
-" paint special column special color
+
+" Columns to highlight (local to window)
 set colorcolumn=81
+
+" highlight colorcolumn set above
 highlight ColorColumn ctermbg=1 guibg=lightgrey
+
+" highlight search result
+hi Search ctermbg=220
 
 filetype plugin on
 
 
-" when paste is set, pasting text from out-vim to vim in original style
+" When paste is set, pasting text from out-vim to vim in original style
 set pastetoggle=<f5>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -130,9 +181,19 @@ silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           mapping
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vim
+" Vim
 nnoremap <leader>n nzz
 nnoremap <leader>N Nzz
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" :&& first & means :s[ubstitude] command, second & means [flag] used last 
+" :s[ubstitude] command
+nnoremap & :&&<CR>  
+xnoremap & :&&<CR>
+
+" Map W to wa, when you enter :W it will be rapalced by :wq
+command W wa
+command Q qa
+command WQ wa|qa
 
 " YCM
 nnoremap <leader>f :YcmCompleter Format<CR>
@@ -142,9 +203,7 @@ nnoremap <leader>F :YcmCompleter FixIt<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           YCM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" highlight Pmenu ctermbg=207 ctermfg=black guibg=gray
-
-
+" Highlight Pmenu ctermbg=207 ctermfg=black guibg=gray
 
 let g:ycm_global_ycm_extra_conf ='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -152,6 +211,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Vim-matchit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Turn on matchit package
 packadd! matchit
-let b:match_words = 'if:else'
 
