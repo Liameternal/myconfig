@@ -3,6 +3,8 @@ set nocompatible
 " required
 filetype off                  
 
+" get Vundle installed
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -15,6 +17,7 @@ Plugin 'kana/vim-textobj-user'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
+Plugin 'arcticicestudio/nord-vim'
 Plugin 'tpope/vim-repeat'
 " Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'rdnetto/YCM-Generator'
@@ -71,6 +74,8 @@ color desert
 set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
+syntax on
+"set hlsearch
 
 " number of screen lines to show around the cursor
 set scrolloff=3
@@ -163,9 +168,23 @@ autocmd BufNewFile *.c 0r ~/.vim/skeleton/slt.c
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 
-let g:lightline={
-    \'colorscheme':'wombat',
-    \}
+" let g:lightline={
+"     \'colorscheme':'wombat',
+"     \}
+"     
+
+let g:lightline = {
+          \ 'colorscheme': 'wombat',
+      \ 'active': {
+          \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'readonly', 'filename', 'modified', 'charvalurhex',
+      \ 'WheatherObsessed']]
+      \ },
+      \ 'component': {
+          \   'charvalurhex': '0x%B',
+          \   'WheatherObsessed': '%{ObsessionStatus()}'
+      \ },
+      \ }
 
 if !has('gui_running')
   set t_Co=256
