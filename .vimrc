@@ -19,6 +19,7 @@ Plugin 'tpope/vim-surround'
 Plugin 'itchyny/lightline.vim'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'tpope/vim-repeat'
+Plugin 'nelstrom/vim-qargs'
 " Plugin 'ycm-core/YouCompleteMe'
 " Plugin 'rdnetto/YCM-Generator'
 Plugin 'adelarsq/vim-matchit'
@@ -75,7 +76,16 @@ set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
 syntax on
-"set hlsearch
+set hlsearch
+" set spell
+
+" for c complement
+" ctags -R -f ~/.vim/systags /usr/include /usr/local/include
+set tags+=~/.vim/systags
+
+" show a complete list above EX command
+set wildmenu
+set wildmode=full
 
 " number of screen lines to show around the cursor
 set scrolloff=3
@@ -95,7 +105,7 @@ set expandtab
 " automatically set the indent of a new line
 set autoindent
 
-" Keep file unstored when jumping files
+" Keep file un-stored when jumping files
 set hidden          
 
 " If the 'showcmd' option is on,the (partially) entered 
@@ -164,6 +174,8 @@ set pastetoggle=<f5>
 nnoremap <leader>n nzz
 nnoremap <leader>N Nzz
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+nnoremap <leader>r :source ~/.vimrc<CR>
+nnoremap <leader>v :vs ~/.vimrc<CR>
 " :&& first & means :s[ubstitude] command, second & means [flag] used last 
 " :s[ubstitude] command
 nnoremap & :&&<CR>  
@@ -174,10 +186,14 @@ command W wa
 command Q qa
 command WQ wa|qa
 
+" give <C-p>/<C-n> capability of filtering history 
+cnoremap <C-p> <Up>
+cnoremap <C-n> <Down>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Filetype Plugin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-autocmd BufNewFile *.c 0r ~/.vim/skeleton/slt.c
+" autocmd BufNewFile *.c 0r ~/.vim/skeleton/slt.c
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           lightline.vim
