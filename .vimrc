@@ -128,7 +128,7 @@ else
 endif
 
 " Replace eol with $ and trailing space with . while set list is true
-set listchars:eol:$,trail:-,tab:>-
+set listchars:eol:$,tab:<->,multispace:☠
 
 " Allow the h command, when used in normal mode, to move the cursor
 " to the end of the previsous line, the l command vice versa. 
@@ -159,6 +159,22 @@ filetype plugin on
 set pastetoggle=<f5>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                           vim mapping
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+nnoremap <leader>n nzz
+nnoremap <leader>N Nzz
+nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
+" :&& first & means :s[ubstitude] command, second & means [flag] used last 
+" :s[ubstitude] command
+nnoremap & :&&<CR>  
+xnoremap & :&&<CR>
+
+" Map W to wa, when you enter :W it will be rapalced by :wq
+command W wa
+command Q qa
+command WQ wa|qa
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Filetype Plugin
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufNewFile *.c 0r ~/.vim/skeleton/slt.c
@@ -178,10 +194,11 @@ let g:lightline = {
       \ 'active': {
           \   'left': [ [ 'mode', 'paste' ],
       \             [ 'readonly', 'filename', 'modified', 'charvalurhex',
-      \ 'WheatherObsessed']]
+      \ 'charvalurdigital', 'WheatherObsessed']]
       \ },
       \ 'component': {
           \   'charvalurhex': '0x%B',
+          \   'charvalurdigital': '%b',
           \   'WheatherObsessed': '%{ObsessionStatus()}'
       \ },
       \ }
@@ -198,28 +215,6 @@ set noshowmode
 silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                           mapping
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Vim
-nnoremap <leader>n nzz
-nnoremap <leader>N Nzz
-nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
-" :&& first & means :s[ubstitude] command, second & means [flag] used last 
-" :s[ubstitude] command
-nnoremap & :&&<CR>  
-xnoremap & :&&<CR>
-
-" Map W to wa, when you enter :W it will be rapalced by :wq
-command W wa
-command Q qa
-command WQ wa|qa
-
-" YCM
-nnoremap <leader>f :YcmCompleter Format<CR>
-nnoremap <leader>d :YcmCompleter GoToDefinition<CR> 
-nnoremap <leader>p :YcmCompleter GoToDeclaration<CR> 
-nnoremap <leader>F :YcmCompleter FixIt<CR> 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           YCM
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight Pmenu ctermbg=207 ctermfg=black guibg=gray
@@ -227,8 +222,13 @@ nnoremap <leader>F :YcmCompleter FixIt<CR>
 let g:ycm_global_ycm_extra_conf ='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
 
+nnoremap <leader>f :YcmCompleter Format<CR>
+nnoremap <leader>d :YcmCompleter GoToDefinition<CR> 
+nnoremap <leader>p :YcmCompleter GoToDeclaration<CR> 
+nnoremap <leader>F :YcmCompleter FixIt<CR> 
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"                           Vim-matchit
+"                           matchit
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Turn on matchit package
 packadd! matchit
