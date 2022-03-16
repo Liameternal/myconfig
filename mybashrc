@@ -1,0 +1,13 @@
+export PATH=$PATH:/home/liam/.local/bin
+
+export https_proxy=http://127.0.0.1:7890
+export http_proxy=http://127.0.0.1:7890
+export all_proxy=socks5://127.0.0.1:7890
+
+/usr/bin/setxkbmap -option "caps:escape"
+
+alias vim="nvim"
+alias vitrc="vim ~/.tmux.conf"
+alias virc="vim ~/.config/nvim/init.vim"
+alias vilua="vim ~/.config/nvim/lua/plugins.lua"
+alias vibrc="vim ~/.bashrc"

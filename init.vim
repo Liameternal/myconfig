@@ -98,7 +98,10 @@ set textwidth=80
 set colorcolumn=81
 
 " highlight colorcolumn set above
-highlight ColorColumn ctermbg=blue guibg=lightgrey
+highlight colorcolumn ctermbg=blue guibg=lightgrey
+
+" highlight visual mode
+highlight Visual ctermbg=232
 
 " highlight search result
 hi Search ctermbg=220
