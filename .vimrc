@@ -71,7 +71,7 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-color desert
+color nord
 set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
@@ -146,19 +146,6 @@ if has('mouse')
     set mouse=a                    
 endif
 
-" make a change
-" Keep copy of a file when overwriting it but not on the VMS.
-" sets the 'undofile' option make the undo command work while you edit a
-" file after exit it at the cost of storing a file.
-if has("vim")
-    set nobackup
-else
-    set backup
-    if has('persistent_undo')
-        set undofile
-    endif
-endif
-
 " Replace eol with $ and trailing space with . while set list is true
 set listchars:eol:$,tab:<->,multispace:☠
 
@@ -179,10 +166,13 @@ set textwidth=80
 set colorcolumn=81
 
 " highlight colorcolumn set above
-highlight ColorColumn ctermbg=1 guibg=lightgrey
+highlight ColorColumn ctermbg=blue guibg=lightgrey
+
+" highlight visual mode
+highlight Visual ctermbg=232
 
 " highlight search result
-hi Search ctermbg=220
+hi Search ctermbg=blue
 
 filetype plugin on
 
