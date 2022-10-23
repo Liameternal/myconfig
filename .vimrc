@@ -76,7 +76,10 @@ set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
 syntax on
+" set hls
 set hlsearch
+" set is
+set incsearch 
 " set spell
 
 " This option specifies how keyword completion |ins-completion| works
