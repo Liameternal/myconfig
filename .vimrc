@@ -29,6 +29,7 @@ Plugin 'tpope/vim-bundler'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'tpope/vim-obsession'
+Plugin 'dracula/vim',{'name':'dracula'}
 
 
 " The following are examples of different formats supported.
@@ -71,7 +72,7 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-color nord
+color dracula
 set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
