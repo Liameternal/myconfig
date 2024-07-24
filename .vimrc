@@ -72,7 +72,7 @@ filetype plugin indent on    " required
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                           Vim
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-color dracula
+color desert
 set fileencodings=utf-8
 set termencoding=utf-8
 set encoding=utf-8
@@ -151,7 +151,7 @@ if has('mouse')
 endif
 
 " Replace eol with $ and trailing space with . while set list is true
-set listchars:eol:$,tab:<->,multispace:☠
+set listchars:eol:$,tab:<->
 
 " Allow the h command, when used in normal mode, to move the cursor
 " to the end of the previsous line, the l command vice versa. 
@@ -164,13 +164,13 @@ set whichwrap=h,l
 set iskeyword=@,48-57,_,192-255
 
 " line length above which to break a line
-set textwidth=80
+" set textwidth=80
 
 " Columns to highlight (local to window)
-set colorcolumn=81
+" set colorcolumn=81
 
 " highlight colorcolumn set above
-highlight ColorColumn ctermbg=blue guibg=lightgrey
+" highlight ColorColumn ctermbg=blue guibg=lightgrey
 
 " highlight visual mode
 highlight Visual ctermbg=232
@@ -192,6 +192,7 @@ nnoremap <leader>N Nzz
 nnoremap <silent> <C-l> :<C-u>nohlsearch<CR><C-l>
 nnoremap <leader>r :source ~/.vimrc<CR>
 nnoremap <leader>v :vs ~/.vimrc<CR>
+
 " :&& first & means :s[ubstitude] command, second & means [flag] used last 
 " :s[ubstitude] command
 nnoremap & :&&<CR>  
