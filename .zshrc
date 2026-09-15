@@ -72,7 +72,7 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(aliases alias-finder ansible colored-man-pages colorize command-not-found common-aliases conda dnf docker docker-compose firewalld fzf git git-commit helm history kind kubectl kube-ps1 minikube rsync themes timer tmux zsh-syntax-highlighting zsh-history-substring-search zsh-autosuggestions )
+plugins=(aliases alias-finder ansible colored-man-pages colorize command-not-found common-aliases conda dnf docker docker-compose firewalld fzf git git-commit helm history kind kubectl kube-ps1 minikube rsync themes timer tmux zsh-syntax-highlighting zsh-history-substring-search zsh-autosuggestions conda-zsh-completion )
 
 source $ZSH/oh-my-zsh.sh
 
