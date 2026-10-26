@@ -16,6 +16,8 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'kana/vim-textobj-entire'
 Plugin 'kana/vim-textobj-user'
+
+" :h gc for more help
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
@@ -77,7 +79,7 @@ syntax on
 set hlsearch
 " set highlight while search
 set incsearch
-" set spell
+" Set spell
 
 " This option specifies how keyword completion |ins-completion| works
 " when CTRL-P or CTRL-N are used.  It is also used for whole-line
@@ -113,20 +115,26 @@ set wildmode=full
 set scrolloff=3
 
 " show the line number for each line
-" set nu
-" set relativenumber
+set nu
+set relativenumber
 
-" number of spaces used for each step of (auto)indent
+" number of spaces used for each step of (auto)indent, such as '<' or '>'
 set sw=4
 
 " number of spaces a <Tab> in the text stands for
 set ts=4
 
+" Number of spaces that a <Tab> counts for while editing
+set softtabstop=4
+
 " Transfer tab into blank
 set expandtab
 
-" automatically set the indent of a new line
+" Copy indent from current line when starting a new line
 set autoindent
+
+" Do smart autoindenting when starting a new line
+set smartindent
 
 " Keep file un-stored when jumping files
 set hidden

@@ -9,8 +9,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="rkj-repos"
-ZSH_THEME="random"
+ZSH_THEME="rkj-repos"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -19,7 +18,7 @@ ZSH_THEME="random"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-CASE_SENSITIVE="true"
+CASE_SENSITIVE="false"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -62,7 +61,7 @@ CASE_SENSITIVE="true"
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="mm/dd/yyyy"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
@@ -75,6 +74,42 @@ CASE_SENSITIVE="true"
 plugins=(aliases alias-finder ansible colored-man-pages colorize command-not-found common-aliases conda dnf docker docker-compose firewalld fzf git git-commit helm history kind kubectl kube-ps1 minikube rsync themes timer tmux zsh-syntax-highlighting zsh-history-substring-search zsh-autosuggestions conda-zsh-completion )
 
 source $ZSH/oh-my-zsh.sh
+
+################################################################################
+#                           colorize plugin customization
+################################################################################
+export ZSH_COLORIZE_STYLE="solarized-dark"
+
+################################################################################
+#                           fzf plugin customization
+################################################################################
+# let fzf use 'rg --files' command to list files rather then 'find . -type f'
+export FZF_DEFAULT_COMMAND='rg --files'
+
+################################################################################
+#                           kube_ps1 plugin customization
+################################################################################
+# kube_ps1 plugin customization
+KUBE_PS1_NS_ENABLE=false
+RPROMPT='$(kube_ps1)'
+
+################################################################################
+#                           history-substring-search plugin customization
+################################################################################
+# history-substring-search plugin customization
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+
+################################################################################
+#                           alias-finder plugin customization
+################################################################################
+# plugin alias-finder config
+#To enable alias-finder for every single command
+zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
+zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
+zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
+zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
+
 
 # User configuration
 
@@ -90,35 +125,19 @@ source $ZSH/oh-my-zsh.sh
 #   export EDITOR='nvim'
 # fi
 
-# setting default editor for systemd or other app
+# Setting default editor for systemd or other app
 export SYSTEMD_EDITOR=vim
 export EDITOR=vim
 export VISUAL=vim
-
-# colorize plugin customization
-export ZSH_COLORIZE_STYLE="solarized-dark"
-# export PATH=$PATH:/root/SlowIOLogScript/
 
 # Compilation flags
 # export ARCHFLAGS="-arch $(uname -m)"
 #
 
-# let fzf use 'rg --files' command to list files rather then 'find . -type f'
-export FZF_DEFAULT_COMMAND='rg --files'
-
-# kube_ps1 plugin customization
-KUBE_PS1_NS_ENABLE=false
-RPROMPT='$(kube_ps1)'
-
-# history-substring-search plugin customization
-bindkey "$terminfo[kcuu1]" history-substring-search-up
-bindkey "$terminfo[kcud1]" history-substring-search-down
-
-# by this way, you can run GUI apps from linux to windows which run mobaxterm with X server enabled. 
+# By this way, you can run GUI apps from linux to windows which run mobaxterm with X server enabled.
 # You need to set the IP address of your windows machine in the DISPLAY variable.
 # 
 # export DISPLAY=192.168.255.1:0.0
-
 
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
@@ -132,30 +151,11 @@ bindkey "$terminfo[kcud1]" history-substring-search-down
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# plugin alias-finder config
-#To enable alias-finder for every single command
-zstyle ':omz:plugins:alias-finder' autoload yes # disabled by default
-zstyle ':omz:plugins:alias-finder' longer yes # disabled by default
-zstyle ':omz:plugins:alias-finder' exact yes # disabled by default
-zstyle ':omz:plugins:alias-finder' cheaper yes # disabled by default
-
-
-# Enable ** globbing (Wildcard to match any file/directory)
-setopt extendedglob
-
-# forbidden history sharing between terminals
+# Forbidden history sharing between terminals
 setopt no_share_history
+# Save each command to the history file immediately after execution,
+# rather than waiting for the shell to exit. Prevents history loss on crashes.
+setopt inc_append_history
 
-
-# Customization Colored man pages
-# bold & blinking mode
-less_termcap[mb]="${fg_bold[red]}"
-less_termcap[md]="${fg_bold[red]}"
-less_termcap[me]="${reset_color}"
-# standout mode
-less_termcap[so]="${fg_bold[oringe]}${bg[gray]}"
-less_termcap[se]="${reset_color}"
-# underlining
-less_termcap[us]="${fg_bold[green]}"
-less_termcap[ue]="${reset_color}"
-
+# Output system info to terminal
+fastfetch
